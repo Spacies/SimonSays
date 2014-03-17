@@ -48,27 +48,20 @@ public class Game
      */
     private void receiveInput() 
     {
+        //Automatic fix by netbeans to handle IOExceptions using try-catch
         try 
         {         
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String line = ""; 
+            String line = "";
+            //Creates user-defined exit from method
             while (line.equalsIgnoreCase("quit") == false)
             {
+                //Stores the typed input as a String variable
                 line = in.readLine(); 
-                System.out.print("1  2  3  4");
-                try 
-                {
-                    Thread.sleep(1000);
-                } 
-                catch(InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
-                System.out.print("\b\b\b\b\b\b\b\b\b\b");
                 //Temporary means of clearing screen within the netbeans IDE
-                //System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-                //        + "\n\n\n");           
-            }
-            
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                        + "\n\n\n");           
+            }         
             in.close();
         } 
         catch (IOException ex) 
@@ -76,4 +69,5 @@ public class Game
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
     }  
+    
 }
