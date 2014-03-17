@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class Game 
 {    
     /**
-     * A new instance of Simon Says that begins displaying output and accepting
+     * A new instance of Simon Says that begins accepting
      * input
      */ 
     public Game() 
@@ -50,7 +50,9 @@ public class Game
             String line = ""; 
             while (line.equalsIgnoreCase("quit") == false)
             {
-                line = in.readLine();
+                line = in.readLine(); 
+                //Temporary means of clearing screen within the netbeans IDE
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
             }
             
             in.close();
