@@ -19,6 +19,8 @@ import java.util.logging.Logger;
  * @author Jaimes Booth
  * @author Sam McGarvey
  * @version 17/03/2014
+ * @modified Jaimes
+ *  Added the call to TestSoundGeneration class for testing purposes.
  */
 public class Game 
 {    
@@ -27,7 +29,10 @@ public class Game
      */ 
     public Game() 
     {
+        
+        TestSoundGeneration testSound = new TestSoundGeneration("file:C_262Hz_1S.wav");
         receiveInput();
+        
     }
     
     /**
