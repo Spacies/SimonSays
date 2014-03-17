@@ -7,9 +7,22 @@
 package simonsays.gameModel;
 
 /**
- *
- * @author Sam
+ * This is the class that knows the Simon Says game rules and enforces these
+ * rules
+ * 
+ * @author Jaimes Booth
+ * @author Sam McGarvey
+ * @version 17/03/2014
  */
-public class Game {
+public class Game 
+{    
+    /**
+     * A new instance of Simon Says that begins displaying output and accepting
+     * input
+     */ 
+    public Game()
+    {
+        
+    }
     
 }
