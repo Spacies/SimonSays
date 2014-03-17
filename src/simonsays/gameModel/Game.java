@@ -21,16 +21,29 @@ import java.util.logging.Logger;
  * @version 17/03/2014
  * @modified Jaimes
  *  Added the call to TestSoundGeneration class for testing purposes.
+ *  Added keys 1,2,3,4 to correspond with different tones. Need to press enter 
+ *  for program to register.
  */
 public class Game 
 {    
+    
+    TestSoundGeneration testSoundC;
+    TestSoundGeneration testSoundE;
+    TestSoundGeneration testSoundG;
+    TestSoundGeneration testSoundB;
+    
+    
     /**
      * A new instance of Simon Says that begins accepting input
      */ 
     public Game() 
     {
         
-        TestSoundGeneration testSound = new TestSoundGeneration("file:C_262Hz_1S.wav");
+        testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
+        //TestSoundGeneration testSoundE = new TestSoundGeneration("file:E4_330Hz_1S.wav");
+        //TestSoundGeneration testSoundG = new TestSoundGeneration("file:G4_392Hz_1S.wav");
+        //TestSoundGeneration testSoundB = new TestSoundGeneration("file:B3_247Hz_1S.wav");
+        //TestSoundGeneration testSoundCAgain = new TestSoundGeneration("file:C4_262Hz_1S.wav");
         receiveInput();
         
     }
@@ -58,6 +71,20 @@ public class Game
             {
                 //Stores the typed input as a String variable
                 line = in.readLine(); 
+                
+                // Check for press of button and play appropriate tone.
+                // Need to press enter to pass input
+                if (line.equals("1"))
+                    testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
+                else if (line.equals("3"))
+                    testSoundE = new TestSoundGeneration("file:E4_330Hz_1S.wav");
+                else if (line.equals("5"))
+                    testSoundG = new TestSoundGeneration("file:G4_392Hz_1S.wav");
+                else if (line.equals("7"))
+                    testSoundB = new TestSoundGeneration("file:B3_247Hz_1S.wav");
+                
+                        
+                        
                 //Temporary means of clearing screen within the netbeans IDE
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
                         + "\n\n\n");           
