@@ -25,8 +25,7 @@ import java.util.logging.Logger;
 public class Game 
 {    
     /**
-     * A new instance of Simon Says that begins accepting
-     * input
+     * A new instance of Simon Says that begins accepting input
      */ 
     public Game() 
     {
@@ -49,23 +48,26 @@ public class Game
      */
     private void receiveInput() 
     {
+        //Automatic fix by netbeans to handle IOExceptions using try-catch
         try 
         {         
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String line = ""; 
+            String line = "";
+            //Creates user-defined exit from method
             while (line.equalsIgnoreCase("quit") == false)
             {
+                //Stores the typed input as a String variable
                 line = in.readLine(); 
                 //Temporary means of clearing screen within the netbeans IDE
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
-            }
-            
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                        + "\n\n\n");           
+            }         
             in.close();
         } 
         catch (IOException ex) 
         {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }  
     
 }
