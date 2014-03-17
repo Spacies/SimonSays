@@ -23,8 +23,7 @@ import java.util.logging.Logger;
 public class Game 
 {    
     /**
-     * A new instance of Simon Says that begins accepting
-     * input
+     * A new instance of Simon Says that begins accepting input
      */ 
     public Game() 
     {
@@ -51,8 +50,18 @@ public class Game
             while (line.equalsIgnoreCase("quit") == false)
             {
                 line = in.readLine(); 
+                System.out.print("1  2  3  4");
+                try 
+                {
+                    Thread.sleep(1000);
+                } 
+                catch(InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+                System.out.print("\b\b\b\b\b\b\b\b\b\b");
                 //Temporary means of clearing screen within the netbeans IDE
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
+                //System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                //        + "\n\n\n");           
             }
             
             in.close();
@@ -61,6 +70,5 @@ public class Game
         {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
+    }  
 }
