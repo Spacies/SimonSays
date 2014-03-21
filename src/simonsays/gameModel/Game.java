@@ -16,8 +16,7 @@ import java.util.logging.Logger;
  * This is the class that knows the Simon Says game rules and enforces these
  * rules
  * 
- * @author Jaimes Booth
- * @author Sam McGarvey
+ * @author Jaimes Booth & Sam McGarvey
  * @version 17/03/2014
  * @modified Jaimes
  *  Added the call to TestSoundGeneration class for testing purposes.
@@ -32,18 +31,20 @@ public class Game
     TestSoundGeneration testSoundG;
     TestSoundGeneration testSoundB;
     
-    
     /**
-     * A new instance of Simon Says that begins accepting input
+     * A new instance of Simon Says that begins producing output and 
+     * accepting input
      */ 
     public Game() 
     {
         
-        testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
+        //testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
         //TestSoundGeneration testSoundE = new TestSoundGeneration("file:E4_330Hz_1S.wav");
         //TestSoundGeneration testSoundG = new TestSoundGeneration("file:G4_392Hz_1S.wav");
         //TestSoundGeneration testSoundB = new TestSoundGeneration("file:B3_247Hz_1S.wav");
         //TestSoundGeneration testSoundCAgain = new TestSoundGeneration("file:C4_262Hz_1S.wav");
+        //Temporary test of output object/output methods
+        Output output = new Output();
         receiveInput();
         
     }
