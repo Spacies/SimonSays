@@ -4,6 +4,7 @@ import java.applet.*;
 import javax.swing.*;
 import java.net.*;
 import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineEvent.Type;
 import javax.sound.sampled.LineListener;
 
 /**
@@ -168,6 +169,12 @@ public class CreateAudioClip extends JApplet implements LineListener // Holds on
 //    }
 
     private void addLineListener(LineListener listener)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(LineEvent event)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
