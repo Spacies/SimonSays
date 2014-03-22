@@ -20,17 +20,19 @@ import java.util.logging.Logger;
  * @author Sam McGarvey
  * @version 17/03/2014
  * @modified Jaimes
- *  Added the call to TestSoundGeneration class for testing purposes.
+ *  Added the call to CreateAudioClip class for testing purposes.
  *  Added keys 1,2,3,4 to correspond with different tones. Need to press enter 
  *  for program to register.
  */
 public class Game 
 {    
     
-    TestSoundGeneration testSoundC;
-    TestSoundGeneration testSoundE;
-    TestSoundGeneration testSoundG;
-    TestSoundGeneration testSoundB;
+    CreateAudioClip testSoundC;
+    CreateAudioClip testSoundE;
+    CreateAudioClip testSoundG;
+    CreateAudioClip testSoundB;
+    
+    CreateAudioClip testSound;
     
     
     /**
@@ -39,11 +41,25 @@ public class Game
     public Game() 
     {
         
-        testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
-        //TestSoundGeneration testSoundE = new TestSoundGeneration("file:E4_330Hz_1S.wav");
-        //TestSoundGeneration testSoundG = new TestSoundGeneration("file:G4_392Hz_1S.wav");
-        //TestSoundGeneration testSoundB = new TestSoundGeneration("file:B3_247Hz_1S.wav");
-        //TestSoundGeneration testSoundCAgain = new TestSoundGeneration("file:C4_262Hz_1S.wav");
+        testSound = new CreateAudioClip("file:C4_262Hz_1S.wav");
+        System.out.println("Test sound is active?: " + testSound.isActive());
+        while (testSound.isActive()); // wait to finish
+       
+        testSound = new CreateAudioClip("file:E4_330Hz_1S.wav");
+        //testSoundC = new CreateAudioClip("file:C4_262Hz_1S.wav");
+        //testSoundE = new CreateAudioClip("file:E4_330Hz_1S.wav");
+        //TestSoundGeneration testSoundG = new CreateAudioClip("file:G4_392Hz_1S.wav");
+        //TestSoundGeneration testSoundB = new CreateAudioClip("file:B3_247Hz_1S.wav");
+        //TestSoundGeneration testSoundCAgain = new CreateAudioClip("file:C4_262Hz_1S.wav");
+        System.out.print("1  2  3  4");
+        try 
+        {
+            Thread.sleep(1000);
+        } 
+        catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.print("\b\b\b\b\b\b\b\b\b\b");
         receiveInput();
         
     }
@@ -75,13 +91,13 @@ public class Game
                 // Check for press of button and play appropriate tone.
                 // Need to press enter to pass input
                 if (line.equals("1"))
-                    testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
+                    testSoundC = new CreateAudioClip("file:C4_262Hz_1S.wav");
                 else if (line.equals("3"))
-                    testSoundE = new TestSoundGeneration("file:E4_330Hz_1S.wav");
+                    testSoundE = new CreateAudioClip("file:E4_330Hz_1S.wav");
                 else if (line.equals("5"))
-                    testSoundG = new TestSoundGeneration("file:G4_392Hz_1S.wav");
+                    testSoundG = new CreateAudioClip("file:G4_392Hz_1S.wav");
                 else if (line.equals("7"))
-                    testSoundB = new TestSoundGeneration("file:B3_247Hz_1S.wav");
+                    testSoundB = new CreateAudioClip("file:B3_247Hz_1S.wav");
                 
                         
                         
