@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package simonsays.gameModel;
 
 import java.io.BufferedReader;
@@ -20,20 +14,20 @@ import java.util.logging.Logger;
  * @author Sam McGarvey
  * @version 17/03/2014
  * @modified Jaimes
- *  Added the call to CreateAudioClip class for testing purposes.
+ *  Added the call to MakeSound class for testing purposes.
  *  Added keys 1,2,3,4 to correspond with different tones. Need to press enter 
  *  for program to register.
  */
 public class Game 
 {    
     
-    CreateAudioClip testSoundC;
-    CreateAudioClip testSoundE;
-    CreateAudioClip testSoundG;
-    CreateAudioClip testSoundB;
+    private MakeSound keySound; // The sound made when a key is pressed.
     
-    CreateAudioClip testSound;
-    
+    // The four game tones
+    final MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
+    final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
+    final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
+    final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");
     
     /**
      * A new instance of Simon Says that begins accepting input
@@ -41,16 +35,19 @@ public class Game
     public Game() 
     {
         
-        testSound = new CreateAudioClip("file:C4_262Hz_1S.wav");
-        System.out.println("Test sound is active?: " + testSound.isActive());
-        while (testSound.isActive()); // wait to finish
-       
-        testSound = new CreateAudioClip("file:E4_330Hz_1S.wav");
-        //testSoundC = new CreateAudioClip("file:C4_262Hz_1S.wav");
-        //testSoundE = new CreateAudioClip("file:E4_330Hz_1S.wav");
-        //TestSoundGeneration testSoundG = new CreateAudioClip("file:G4_392Hz_1S.wav");
-        //TestSoundGeneration testSoundB = new CreateAudioClip("file:B3_247Hz_1S.wav");
-        //TestSoundGeneration testSoundCAgain = new CreateAudioClip("file:C4_262Hz_1S.wav");
+        //Play a welcome sound sequence
+        toneG.playNPause();
+        toneE.playNPause();
+        toneB.playNPause();
+        toneC.playNPause();
+        
+        //testSoundC = new MakeSound("file:C4_262Hz_1S.wav");
+        //testSoundE = new MakeSound("file:E4_330Hz_1S.wav");
+        //TestSoundGeneration testSoundG = new MakeSound("file:G4_392Hz_1S.wav");
+        //TestSoundGeneration testSoundB = new MakeSound("file:B3_247Hz_1S.wav");
+        //TestSoundGeneration testSoundCAgain = new MakeSound("file:C4_262Hz_1S.wav");
+        
+        // Print string, pause and delete string
         System.out.print("1  2  3  4");
         try 
         {
@@ -91,13 +88,13 @@ public class Game
                 // Check for press of button and play appropriate tone.
                 // Need to press enter to pass input
                 if (line.equals("1"))
-                    testSoundC = new CreateAudioClip("file:C4_262Hz_1S.wav");
+                    toneC.playNPause();
                 else if (line.equals("3"))
-                    testSoundE = new CreateAudioClip("file:E4_330Hz_1S.wav");
+                    toneE.playNPause();
                 else if (line.equals("5"))
-                    testSoundG = new CreateAudioClip("file:G4_392Hz_1S.wav");
+                    toneG.playNPause();
                 else if (line.equals("7"))
-                    testSoundB = new CreateAudioClip("file:B3_247Hz_1S.wav");
+                    toneB.playNPause();
                 
                         
                         
@@ -111,6 +108,8 @@ public class Game
         {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }  
+    }
+    
+    
     
 }
