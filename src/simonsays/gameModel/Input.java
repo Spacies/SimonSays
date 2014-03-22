@@ -9,6 +9,7 @@ package simonsays.gameModel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +29,7 @@ public class Input {
 
     public Input()
     {
-        
+        handleInput();
     }
 
     
@@ -80,6 +81,56 @@ public class Input {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    private void handleInput()
+    {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String input = "";
+        char rawInput;
+        while(input.length() < 10)
+        {
+            try { 
+                rawInput = (char)reader.read();                  
+                if(rawInput>48 && rawInput<53)
+                {
+                    if(rawInput==49)
+                        input += "1"; 
+                    if(rawInput==50)
+                        input += "2";
+                    if(rawInput==51)
+                        input += "3";
+                    if(rawInput==52)
+                        input+= "4";
+                }  
+                else if((rawInput<49||rawInput>52)&&rawInput!=10)
+                    System.out.println("Invalid Input");
+            } catch (IOException ex) {
+                Logger.getLogger(Input.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+            
+        for(int i = 0; i<input.length();i++)
+        {
+            if(input.charAt(i)==49)
+                testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
+            else if(input.charAt(i)==50)
+                testSoundE = new TestSoundGeneration("file:E4_330Hz_1S.wav");
+            else if(input.charAt(i)==51)
+                testSoundG = new TestSoundGeneration("file:G4_392Hz_1S.wav");
+            else if(input.charAt(i)==52)
+                testSoundB = new TestSoundGeneration("file:B3_247Hz_1S.wav"); 
+            try 
+            {
+                //Alternate code for sleeping thread. Intelligible time units
+                TimeUnit.MILLISECONDS.sleep(1500);
+            } 
+            catch(InterruptedException ex) {
+                //Handles any exceptions cause by interrupting the thread above
+                Thread.currentThread().interrupt();
+            } 
+        }           
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");         
     }
 
 } 

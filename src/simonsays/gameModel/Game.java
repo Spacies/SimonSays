@@ -34,5 +34,6 @@ public class Game
     public Game() 
     {
         Output output = new Output();  
+        Input input = new Input();
     }
 }
