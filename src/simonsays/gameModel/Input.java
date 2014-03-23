@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package simonsays.gameModel;
 
 import java.io.BufferedReader;
@@ -21,68 +15,24 @@ import java.util.logging.Logger;
  * @version 22/03/2014
  */
 public class Input {
-    private TestSoundGeneration testSoundC;
-    private TestSoundGeneration testSoundE;
-    private TestSoundGeneration testSoundG;
-    private TestSoundGeneration testSoundB;
+    // The four game tones
+    final MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
+    final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
+    final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
+    final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");
     
 
     public Input()
     {
-        handleInput();
+        // Commented out and replaced with recive input for cross
+        // cross-platform compatibility.
+        
+        //handleInput();
+        
+        receiveInput();
     }
 
-    
-    /**
-     * Code obtained from web - Input is typed into command line and then
-     * stored as a string. Input is shown in command line as text, can 
-     * abort through typing "quit" (See while clause)
-     * 
-     * Code complains re: declaring IOException, Netbeans suggests 
-     * try-catch clause and automatically formatted.
-     * 
-     * Enter moves to next line and previous input remains. This will
-     * continue until "Quit" is entered
-     */
-    private void receiveInput() 
-    {
-        //Automatic fix by netbeans to handle IOExceptions using try-catch
-        try 
-        {         
-            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String line = "";
-            //Creates user-defined exit from method
-            while (line.equalsIgnoreCase("quit") == false)
-            {
-                //Stores the typed input as a String variable
-                line = in.readLine(); 
-
-                // Check for press of button and play appropriate tone.
-                // Need to press enter to pass input
-                if (line.equals("1"))
-                    testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
-                else if (line.equals("3"))
-                    testSoundE = new TestSoundGeneration("file:E4_330Hz_1S.wav");
-                else if (line.equals("5"))
-                    testSoundG = new TestSoundGeneration("file:G4_392Hz_1S.wav");
-                else if (line.equals("7"))
-                    testSoundB = new TestSoundGeneration("file:B3_247Hz_1S.wav");
-
-
-
-                //Temporary means of clearing screen within the netbeans IDE
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-                        + "\n\n\n");           
-            }         
-            in.close();
-        } 
-        catch (IOException ex) 
-        {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    
+    // This code is not cross-platform compatible!
     private void handleInput()
     {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -113,13 +63,13 @@ public class Input {
         for(int i = 0; i<input.length();i++)
         {
             if(input.charAt(i)==49)
-                testSoundC = new TestSoundGeneration("file:C4_262Hz_1S.wav");
+                toneC.playNPause();
             else if(input.charAt(i)==50)
-                testSoundE = new TestSoundGeneration("file:E4_330Hz_1S.wav");
+                toneE.playNPause();
             else if(input.charAt(i)==51)
-                testSoundG = new TestSoundGeneration("file:G4_392Hz_1S.wav");
+                toneG.playNPause();
             else if(input.charAt(i)==52)
-                testSoundB = new TestSoundGeneration("file:B3_247Hz_1S.wav"); 
+                toneB.playNPause();
             try 
             {
                 //Alternate code for sleeping thread. Intelligible time units
@@ -132,6 +82,59 @@ public class Input {
         }           
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");         
     }
+    
+    
+    /**
+     * Code obtained from web - Input is typed into command line and then
+     * stored as a string. Input is shown in command line as text, can 
+     * abort through typing "quit" (See while clause)
+     * 
+     * Code complains re: declaring IOException, Netbeans suggests 
+     * try-catch clause and automatically formatted.
+     * 
+     * Enter moves to next line and previous input remains. This will
+     * continue until "Quit" is entered
+     */
+    private void receiveInput() 
+    {
+        //Automatic fix by netbeans to handle IOExceptions using try-catch
+        try 
+        {         
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            String line = "";
+            //Creates user-defined exit from method
+            while (line.equalsIgnoreCase("quit") == false)
+            {
+                //Stores the typed input as a String variable
+                line = in.readLine(); 
+
+                // Check for press of button and play appropriate tone.
+                // Need to press enter to pass input
+                if (line.equals("1"))
+                    toneC.playNPause();
+                else if (line.equals("3"))
+                    toneE.playNPause();
+                else if (line.equals("5"))
+                    toneG.playNPause();
+                else if (line.equals("7"))
+                    toneB.playNPause();
+
+
+
+                //Temporary means of clearing screen within the netbeans IDE
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                        + "\n\n\n");           
+            }         
+            in.close();
+        } 
+        catch (IOException ex) 
+        {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    
 
 } 
 
