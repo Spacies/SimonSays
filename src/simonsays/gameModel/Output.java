@@ -63,17 +63,17 @@ public class Output
                 toneC.playNPause();
                 
             }
-            else if (outputList.get(element).equals(2))
+            else if (outputList.get(element).equals(3))
             {
                 System.out.println("3");
                 toneE.playNPause();
             }
-            else if (outputList.get(element).equals(3))
+            else if (outputList.get(element).equals(5))
             {
                 System.out.println("5");
                 toneG.playNPause();
             }
-            else if (outputList.get(element).equals(4))
+            else if (outputList.get(element).equals(7))
             {
                 System.out.println("7");
                 toneB.playNPause();
