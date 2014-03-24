@@ -35,15 +35,24 @@ public class Input {
     // This code is not cross-platform compatible!
     private void handleInput()
     {
+        //Creates a local instance of BufferedReader with new instance of 
+        //InputStreamReader as a parameter
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        //Declare and intialise an empty string to hold input
         String input = "";
+        //Declare a local variable to hold raw input
         char rawInput;
-        while(input.length() < 10)
+        //Loop to be used to accept input until condition met
+        //To be compared against length of output
+        while(input.length() < 1)
         {
             try { 
-                rawInput = (char)reader.read();                  
+                //Accept raw character input
+                rawInput = (char)reader.read();  
+                //Checks if raw input is between characters for keyboard 1-4
                 if(rawInput>48 && rawInput<53)
                 {
+                    //Adds 1-4 to input string matching raw char input
                     if(rawInput==49)
                         input += "1"; 
                     if(rawInput==50)
@@ -53,13 +62,15 @@ public class Input {
                     if(rawInput==52)
                         input+= "4";
                 }  
+                //Prints invalid input if another key is pushed (ignores enter key)
                 else if((rawInput<49||rawInput>52)&&rawInput!=10)
                     System.out.println("Invalid Input");
             } catch (IOException ex) {
                 Logger.getLogger(Input.class.getName()).log(Level.SEVERE, null, ex);
             }   
         }
-            
+        //Iterates through input string playing tone corresponding to each 
+        //element in order 
         for(int i = 0; i<input.length();i++)
         {
             if(input.charAt(i)==49)
@@ -72,14 +83,16 @@ public class Input {
                 toneB.playNPause();
             try 
             {
-                //Alternate code for sleeping thread. Intelligible time units
+                //Pauses program after each tone is played for 1.5 seconds so tones
+                //are played individually
                 TimeUnit.MILLISECONDS.sleep(1500);
             } 
             catch(InterruptedException ex) {
                 //Handles any exceptions cause by interrupting the thread above
                 Thread.currentThread().interrupt();
             } 
-        }           
+        } 
+        //Prints 16 new line characters to clear console
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");         
     }
     
