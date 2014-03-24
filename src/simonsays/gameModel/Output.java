@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * @author Jaimes Booth & Sam McGarvey
  * @version 20/03/14
  * 
- * @modified Added random output generation and store to a linkedList
+ * @modified 25/03/14 Added random output generation and store to a linkedList
  *  in constructor.
  */
 public class Output

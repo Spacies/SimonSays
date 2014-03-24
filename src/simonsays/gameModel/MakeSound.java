@@ -6,7 +6,9 @@ import java.net.*;
 /**
  * Represents a sound audioClip object.
  * 
- * @AUTHOR Jaimes Booth & Sam McGarvey 16-03-14
+ * @AUTHOR Jaimes Booth & Sam McGarvey 
+ * @version 16-03-14
+ * 
  * Code derived from
  * http://www.dreamincode.net/forums/topic/14083-incredibly-easy-way-to-play-sounds/
  */

@@ -4,6 +4,7 @@ package simonsays.gameModel;
  * An enum variable which stores the various states of the game
  * 
  * @author Jaimes Booth & Sam McGarvey
+ * @version 22/03/14
  */
 public enum GameState {
     
