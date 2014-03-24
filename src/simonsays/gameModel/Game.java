@@ -115,8 +115,8 @@ public class Game
         
         if (listsMatch)
         {
-        // All elements match
-        System.out.println("Correct!");
+            // All elements match
+            System.out.println("Correct!");
         }
         else
         {
