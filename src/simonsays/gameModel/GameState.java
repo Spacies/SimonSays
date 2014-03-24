@@ -11,5 +11,6 @@ public enum GameState {
     STARTED,    //The game is starting/in menu
     PLAYING,    //The game is currently playing
     GAMEOVER,   //The game has been lost
-    WON;        //Temporary state for demonstration purposes
+    WON,        //Temporary state for demonstration purposes
+    QUIT;       //The user wishes to quit the game
 }
