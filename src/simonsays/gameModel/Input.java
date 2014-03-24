@@ -26,7 +26,6 @@ public class Input {
     {
         // Commented out and replaced with recive input for cross
         // cross-platform compatibility.
-        
         //handleInput();
         
         receiveInput();
@@ -98,15 +97,14 @@ public class Input {
     
     
     /**
-     * Code obtained from web - Input is typed into command line and then
-     * stored as a string. Input is shown in command line as text, can 
-     * abort through typing "quit" (See while clause)
+     * This is a temproary input method to be used for demonstration purposes
      * 
-     * Code complains re: declaring IOException, Netbeans suggests 
-     * try-catch clause and automatically formatted.
+     * This is to be used until Windows/OSX complatability issues from other
+     * method have been fixed for Sprint 2 demonstration
      * 
-     * Enter moves to next line and previous input remains. This will
-     * continue until "Quit" is entered
+     * This method will be designed to handle a single input as to show the 
+     * basic concept in the game and the basic structure of how the game
+     * should operate 
      */
     private void receiveInput() 
     {

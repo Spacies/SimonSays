@@ -9,7 +9,8 @@ package simonsays.gameModel;
  */
 public class Game 
 {    
-    
+    private GameState state;
+    private boolean isPlaying = true;
     
     /**
      * A new instance of Simon Says that begins producing output and 
@@ -17,7 +18,45 @@ public class Game
      */ 
     public Game() 
     {
-        Output output = new Output();  
-        Input input = new Input();
+       while(isPlaying)
+       {
+           //This should probably be initialised elsewhere, will leave here
+           //until menu is implemented
+           state=GameState.STARTED;
+           
+           while(state==GameState.STARTED)
+           {
+               //Code to handle the menu will be added later
+               state=GameState.PLAYING;
+           }
+           while(state==GameState.PLAYING)
+           {
+                Output output = new Output();  
+                Input input = new Input();
+           }
+           while(state==GameState.GAMEOVER)
+           {
+               hasLost();
+           }
+           while(state==GameState.WON)
+           {
+               hasWon();
+           }
+       }
+        
+        
+
+    }
+    
+    public void hasWon()
+    {
+        System.out.println("Congratulations! You have won!");
+        state=GameState.STARTED;
+    }
+    
+    public void hasLost()
+    {
+        System.out.println("Sorry, you have lost the game!");
+        state=GameState.STARTED;
     }
 }
