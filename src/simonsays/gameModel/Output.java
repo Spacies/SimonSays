@@ -83,25 +83,6 @@ public class Output
         
     }
     
-   /**
-    * A temporary method to hold code to show how thread sleeping and backspace
-    * characters can be used to show visual game output, then remove it
-    * 
-    * TO BE DELETED
-    */
-    private void outputTestPlaceholder()
-    {  
-        System.out.print("1  2  3  4");
-        try 
-        {
-            Thread.sleep(1000);
-        } 
-        catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-        System.out.print("\b\b\b\b\b\b\b\b\b\b");
-    }
-    
     /**
      * This is a method to print a countdown before the program begins printing
      * the game output
