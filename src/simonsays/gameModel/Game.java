@@ -11,8 +11,10 @@ import java.util.List;
  */
 public class Game 
 {    
-    Output output;
-    Input input;
+    
+    private GameState state = GameState.STARTED;
+    private Output output;
+    private Input input;
     
     /**
      * A new instance of Simon Says that begins producing output and 
@@ -20,12 +22,66 @@ public class Game
      */ 
     public Game() 
     {
-        output = new Output();  
-        input = new Input();
         
-        // Compare input and output string
-        compareInOutput();
-        
+       while(state!=GameState.QUIT)
+       {
+           //This loop will contain menu elements and will be exited through
+           //explicity setting the state to playing via selecting a "Start 
+           //game" menu option
+           while(state==GameState.STARTED)
+           {
+                //Code to handle the menu will be added later
+                state=GameState.PLAYING;
+           }
+           //This loop will contain any code required to successfully play the
+           //game until the game is lost (or won in the demo version)
+           while(state==GameState.PLAYING)
+           {
+                //Create an instance of the output and input 
+                output = new Output();  
+                input = new Input();
+                //The win calculation will be calculated here and return a boolean
+                boolean hasLost = false;
+                //Conditional statement to be triggered once game is reported 
+                //as being lost
+                if(hasLost)
+                    state=GameState.GAMEOVER;
+                //Temporary code to trigger won state for demonstration purposes
+                else
+                    state=GameState.WON;
+           }   
+           //This loop will perform any operations required upon the game being 
+           //lost, and will explicitly set the state back to STARTED to return to
+           //the menu
+           while(state==GameState.GAMEOVER)
+           {
+                hasLost();
+                //Temporary program exit until menu and quit option completed
+                state=GameState.QUIT;
+           }
+           //This loop is for demonstration purposes and is to handle a successful
+           //demonstration round of SimonSays
+           while(state==GameState.WON)
+           {
+                hasWon();
+                //Temporary program exit until menu and quit option completed
+                state=GameState.QUIT;
+           }
+       }
+    }
+    
+    public void hasWon()
+    {
+        //A message to be printed to indicate the game was won - demo only
+        System.out.println("Congratulations! You have won!");
+    }
+    
+    public void hasLost()
+    {
+        //A message to be printed to indicate the game was lost
+        System.out.println("Sorry, you have lost the game!");
+        //This will change the game state so that the game returns to the menu
+        //state=GameState.STARTED;
     }
     
     /**

@@ -8,8 +8,9 @@ package simonsays.gameModel;
 public enum GameState {
     
     //Temporary state variable placeholders, to be adjusted when actually needed
-    STARTED,   //The game is starting/in menu
+    STARTED,    //The game is starting/in menu
     PLAYING,    //The game is currently playing
-    GAMEOVER;       //The game has been lost
-    
+    GAMEOVER,   //The game has been lost
+    WON,        //Temporary state for demonstration purposes
+    QUIT;       //The user wishes to quit the game
 }
