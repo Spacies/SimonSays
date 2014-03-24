@@ -26,14 +26,16 @@ public class Input {
     // The input list of integers representing responses to the
     // game questions.
     private List<Integer> inputList = new LinkedList<>();
+    private Output output;
+   
 
-    public Input()
+    public Input(Output output)
     {
         // Commented out and replaced with receive input for cross
         // cross-platform compatibility.
         
         //handleInput();
-        
+        this.output = output;
         receiveInput();
     }
 
@@ -106,9 +108,10 @@ public class Input {
         try 
         {         
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String line = "";
+            String line = "";            
+             List<Integer> outputList = output.getOutputList();
             //Creates user-defined exit from method
-            while (line.equalsIgnoreCase("quit") == false)
+            while (inputList.size()!=outputList.size())
             {
                 //Stores the typed input as a String variable
                 line = in.readLine();

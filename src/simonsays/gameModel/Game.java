@@ -39,16 +39,16 @@ public class Game
            {
                 //Create an instance of the output and input 
                 output = new Output();  
-                input = new Input();
+                input = new Input(output);
                 //The win calculation will be calculated here and return a boolean
-                boolean hasLost = false;
+                boolean inputCorrect = compareInOutput();
                 //Conditional statement to be triggered once game is reported 
                 //as being lost
-                if(hasLost)
-                    state=GameState.GAMEOVER;
+                if(inputCorrect)
+                    state=GameState.WON;                 
                 //Temporary code to trigger won state for demonstration purposes
                 else
-                    state=GameState.WON;
+                    state=GameState.GAMEOVER;
            }   
            //This loop will perform any operations required upon the game being 
            //lost, and will explicitly set the state back to STARTED to return to
@@ -88,7 +88,7 @@ public class Game
      * Compares the game's input with the game's output. If they don't
      * correlate, game ends.
      */
-    protected void compareInOutput()
+    protected boolean compareInOutput()
     {
         
         // Get game's output list.
@@ -111,19 +111,8 @@ public class Game
                 listsMatch = false;
                 
             }
-        }
-        
-        if (listsMatch)
-        {
-        // All elements match
-        System.out.println("Correct!");
-        }
-        else
-        {
-            // Game Over
-            //state = GameState.GAMEOVER;
-            System.out.println("Game over!");
-        }
+        }        
+        return listsMatch;
     }
     
 }
