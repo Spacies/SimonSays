@@ -17,6 +17,7 @@ public class SimonSays {
      */
     public static void main(String[] args) {
         
+        // Create the game object.
         final Game game = new Game();
     }
     

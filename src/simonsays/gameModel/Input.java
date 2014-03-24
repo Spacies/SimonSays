@@ -3,6 +3,8 @@ package simonsays.gameModel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,10 +23,13 @@ public class Input {
     final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
     final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");
     
+    // The input list of integers representing responses to the
+    // game questions.
+    private List<Integer> inputList = new LinkedList<>();
 
     public Input()
     {
-        // Commented out and replaced with recive input for cross
+        // Commented out and replaced with receive input for cross
         // cross-platform compatibility.
         
         //handleInput();
@@ -106,25 +111,38 @@ public class Input {
             while (line.equalsIgnoreCase("quit") == false)
             {
                 //Stores the typed input as a String variable
-                line = in.readLine(); 
+                line = in.readLine();
 
                 // Check for press of button and play appropriate tone.
-                // Need to press enter to pass input
+                // Need to press enter to pass input.
+                // Add entered input to inputList.
                 if (line.equals("1"))
+                {
                     toneC.playNPause();
+                    inputList.add(1);
+                }
                 else if (line.equals("3"))
+                {
                     toneE.playNPause();
+                    inputList.add(3);
+                }
                 else if (line.equals("5"))
+                {
                     toneG.playNPause();
+                    inputList.add(5);
+                }
                 else if (line.equals("7"))
+                {
                     toneB.playNPause();
-
-
+                    inputList.add(7);
+                }
 
                 //Temporary means of clearing screen within the netbeans IDE
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
                         + "\n\n\n");           
-            }         
+            }
+            
+            
             in.close();
         } 
         catch (IOException ex) 
@@ -134,8 +152,18 @@ public class Input {
 
     }
     
+    /**
+     * Gets the input list of integers.
+     * 
+     * @return List<Integer> The input List of integers.
+     */
+    public List<Integer> getInputList()
+    {
+        
+        return inputList;
+        
+    }
     
-
 } 
 
 

@@ -14,7 +14,7 @@ import java.util.LinkedList;
  * @modified Added random output generation and store to a linkedList
  *  in constructor.
  */
-public class Output 
+public class Output
 {
     
     private MakeSound keySound; // The sound made when a key is pressed.
@@ -29,6 +29,7 @@ public class Output
     // game questions.
     private List<Integer> outputList = new LinkedList<>();
     
+    // An object that randomly returns int values of 1, 3, 5 or 7 when called.
     private RandomInt randomIntGenerator = new RandomInt();
     
     /**
@@ -39,12 +40,6 @@ public class Output
         
         //Calling the outputCountDown method to check how it prints
         outputCountDown();
-        
-        // Play a welcome sound sequence
-//        toneG.playNPause();
-//        toneE.playNPause();
-//        toneB.playNPause();
-//        toneC.playNPause();
        
         // Generate a random int (to associate with a random tone)
         int randomInt = randomIntGenerator.generateRandomInt();
@@ -129,6 +124,32 @@ public class Output
                 Thread.currentThread().interrupt();
             } 
         }   
+    }
+    
+    /**
+     * Gets the outputlist of integers.
+     * 
+     * @return List<Integer> The output List of integers.
+     */
+    public List<Integer> getOutputList()
+    {
+        
+        return outputList;
+        
+    }
+    
+    /**
+     * Plays a welcome sound tone sequence.
+     */
+    public void playWelcomeSound()
+    {
+        
+        // Play a welcome sound sequence
+        toneG.playNPause();
+        toneE.playNPause();
+        toneB.playNPause();
+        toneC.playNPause();
+        
     }
     
 }
