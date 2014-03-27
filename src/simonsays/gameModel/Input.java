@@ -108,9 +108,11 @@ public class Input {
         try 
         {         
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String line = "";            
-             List<Integer> outputList = output.getOutputList();
-            //Creates user-defined exit from method
+            String line = "";   
+            //Creates a local version of the current output list
+            List<Integer> outputList = output.getOutputList();
+            //Continues to collect input until the input list size equals the 
+            //output list size
             while (inputList.size()!=outputList.size())
             {
                 //Stores the typed input as a String variable
