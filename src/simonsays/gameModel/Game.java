@@ -8,6 +8,9 @@ import java.util.List;
  * 
  * @author Jaimes Booth & Sam McGarvey
  * @version 17/03/2014
+ * @version 24/03/2014
+ *  Modified game to use game states
+ *  Added compareInOutput()
  */
 public class Game 
 {    

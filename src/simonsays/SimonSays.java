@@ -7,6 +7,7 @@ import simonsays.gameModel.Game;
  * Design and Construction, AUT - Semester 1, 2014
  * 
  * @author Jaimes Booth & Sam McGarvey
+ * @version 18/03/14
  */
 public class SimonSays {
 

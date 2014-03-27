@@ -7,7 +7,7 @@ import java.util.Random;
  * 
  * @author Jaimes Booth & Sam McGarvey
  * @version 23/03/14
- * @version 24/03/14
+ * @modified 24/03/14
  *  generateRandomInt returns int values of 1, 3, 5, or 7.
  */
 public class RandomInt
@@ -49,11 +49,7 @@ public class RandomInt
         //System.out.println("Random int generated is: " + iRandomInt);
         
         return iRandomInt;
-        
-            
+               
     }
-    
-     
-    
-    
+       
 }
