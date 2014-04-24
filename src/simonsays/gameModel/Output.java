@@ -47,7 +47,7 @@ public class Output
         // Add random int to outputList
         outputList.add(randomInt);
 
-        
+
         // Play and print outputList
         // 
         for (int element = 0; element < outputList.size(); element++)
@@ -73,7 +73,8 @@ public class Output
                 System.out.println("7");
                 toneB.playNPause();
             }
-            
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+            + "\n\n\n"); 
         }
         
     }

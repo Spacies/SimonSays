@@ -112,7 +112,8 @@ public class Input {
         try 
         {         
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String line = "";            
+            String line = "";   
+            System.out.println("Please repeat the output:");
              //List<Integer> outputList = output.getOutputList();
             //Creates user-defined exit from method
             //while (inputList.size()!=outputList.size())

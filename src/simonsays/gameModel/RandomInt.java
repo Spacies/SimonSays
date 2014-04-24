@@ -42,7 +42,7 @@ public class RandomInt
             // Generate one random integer between 1 and 7.
             // Add 1 to generated number because range min (0) is inclusive
             // while max (6) is exclusive.
-            iRandomInt = randomGenerator.nextInt(6) + 1;
+            iRandomInt = randomGenerator.nextInt(7) + 1;
         
         }
         
