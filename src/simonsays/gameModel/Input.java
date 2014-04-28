@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,7 @@ public class Input {
         
         //handleInput();
         this.output = output;
-        receiveInput();
+        receiveInputTest();
     }
 
     // This code is not cross-platform compatible!
@@ -160,6 +161,61 @@ public class Input {
         }
 
     }
+    /**
+     * An alternative input method that uses a scanner for input instead of a buffered reader.
+     */
+    private void receiveInputTest() 
+    {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        int input = 0;
+        System.out.println("Please repeat the output:");
+        while (inputList.size()!=output.getOutputList().size())
+        {
+            //Stores the typed input as a String variable
+            if(scanner.hasNextInt())
+            {
+                input = scanner.nextInt();
+            }
+            else
+            {
+                System.out.println("Please enter a valid input");
+                scanner.nextLine();
+            }
+            // Check for press of button and play appropriate tone.
+            // Need to press enter to pass input.
+            // Add entered input to inputList.
+            if (input == 1)
+            {
+                toneC.playNPause();
+                inputList.add(1);           
+            }
+            else if (input == 3)
+            {
+                toneE.playNPause();
+                inputList.add(3);
+            }
+            else if (input == 5)
+            {
+                toneG.playNPause();
+                inputList.add(5);
+            }
+            else if (input == 7)
+            {
+                toneB.playNPause();
+                inputList.add(7);
+            }
+            if(input!=0)
+            {
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                + "\n\n\n");
+            }
+            
+            //Temporary means of clearing screen within the netbeans IDE
+
+        }
+        scanner.close();
+
+    }    
     
     /**
      * Gets the input list of integers.
