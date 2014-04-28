@@ -44,56 +44,6 @@ public class Input {
         receiveInputTest();
     }
 
-    // This code is not cross-platform compatible!
-//    private void handleInput()
-//    {
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//        String input = "";
-//        char rawInput;
-//        while(input.length() < 10)
-//        {
-//            try { 
-//                rawInput = (char)reader.read();                  
-//                if(rawInput>48 && rawInput<53)
-//                {
-//                    if(rawInput==49)
-//                        input += "1"; 
-//                    if(rawInput==50)
-//                        input += "2";
-//                    if(rawInput==51)
-//                        input += "3";
-//                    if(rawInput==52)
-//                        input+= "4";
-//                }  
-//                else if((rawInput<49||rawInput>52)&&rawInput!=10)
-//                    System.out.println("Invalid Input");
-//            } catch (IOException ex) {
-//                Logger.getLogger(Input.class.getName()).log(Level.SEVERE, null, ex);
-//            }   
-//        }
-//            
-//        for(int i = 0; i<input.length();i++)
-//        {
-//            if(input.charAt(i)==49)
-//                toneC.playNPause();
-//            else if(input.charAt(i)==50)
-//                toneE.playNPause();
-//            else if(input.charAt(i)==51)
-//                toneG.playNPause();
-//            else if(input.charAt(i)==52)
-//                toneB.playNPause();
-//            try 
-//            {
-//                //Alternate code for sleeping thread. Intelligible time units
-//                TimeUnit.MILLISECONDS.sleep(1500);
-//            } 
-//            catch(InterruptedException ex) {
-//                //Handles any exceptions cause by interrupting the thread above
-//                Thread.currentThread().interrupt();
-//            } 
-//        }           
-//        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");         
-//    }
     
     
     /**
@@ -166,20 +116,27 @@ public class Input {
      */
     private void receiveInputTest() 
     {
-        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        //Declares and initialises a scanner
+        Scanner inputScanner = new Scanner(new InputStreamReader(System.in));
+        //Decclares and initalises a variable for storing input from scanner.
         int input = 0;
+        //Prints statement requesting input.
         System.out.println("Please repeat the output:");
+        //A loop conditional on user input being the same length as user output
         while (inputList.size()!=output.getOutputList().size())
         {
-            //Stores the typed input as a String variable
-            if(scanner.hasNextInt())
+            //Checks if input is integer
+            if(inputScanner.hasNextInt())
             {
-                input = scanner.nextInt();
+                //Stores integer to input variable
+                input = inputScanner.nextInt();    
             }
             else
             {
+                //Prints statement requesting valid input
                 System.out.println("Please enter a valid input");
-                scanner.nextLine();
+                //Moves scanner to next line to avoid infinite loop
+                inputScanner.nextLine();
             }
             // Check for press of button and play appropriate tone.
             // Need to press enter to pass input.
@@ -204,16 +161,18 @@ public class Input {
                 toneB.playNPause();
                 inputList.add(7);
             }
-            if(input!=0)
+            else
             {
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-                + "\n\n\n");
+                 System.out.println("Please enter a valid input");               
             }
-            
-            //Temporary means of clearing screen within the netbeans IDE
-
         }
-        scanner.close();
+        //Temporary means of clearing screen within the netbeans IDE
+        if(input!=0)
+        {
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+            + "\n\n\n");
+        }
+        //inputScanner.close();
 
     }    
     

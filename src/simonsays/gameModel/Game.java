@@ -18,6 +18,7 @@ public class Game
     private GameState state = GameState.STARTED;
     private Output output;
     private Input input;
+    private int menuInput;
     
     /**
      * A new instance of Simon Says that begins producing output and 
@@ -33,8 +34,16 @@ public class Game
            //game" menu option
            while(state==GameState.STARTED)
            {
-                //Code to handle the menu will be added later
-                state=GameState.PLAYING;
+                UserInterface cui = new UserInterface();
+                menuInput = cui.generateMenu();
+                if(menuInput == 1)
+                {
+                    state=GameState.PLAYING;      
+                }
+                if(menuInput == 5)
+                {
+                    System.exit(0);
+                }
            }
            //This loop will contain any code required to successfully play the
            //game until the game is lost (or won in the demo version)
