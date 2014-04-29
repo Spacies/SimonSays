@@ -55,7 +55,7 @@ public class Game
                 }
                 if(menuInput == 5)
                 {
-                    System.exit(0);
+                    state=GameState.QUIT;
                 }
            }
            //This loop will contain any code required to successfully play the
@@ -88,23 +88,9 @@ public class Game
            {
                 hasLost();
                 //Temporary program exit until menu and quit option completed
-                state=GameState.QUIT;
-           }
-           //This loop is for demonstration purposes and is to handle a successful
-           //demonstration round of SimonSays
-           while(state==GameState.WON)
-           {
-                hasWon();
-                //Temporary program exit until menu and quit option completed
-                state=GameState.QUIT;
+                state = GameState.STARTED;
            }
        }
-    }
-    
-    public void hasWon()
-    {
-        //A message to be printed to indicate the game was won - demo only
-        System.out.println("Congratulations! You have won!");
     }
     
     public void hasLost()
