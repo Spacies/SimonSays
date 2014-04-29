@@ -16,7 +16,7 @@ import java.util.LinkedList;
  */
 public class Output
 {
-    
+    boolean firstRound = true;
     private MakeSound keySound; // The sound made when a key is pressed.
     
     // The four game tones
@@ -37,46 +37,54 @@ public class Output
      */
     public Output()
     {
-        
+              
+    }
+    
+    public void produceOutput()
+    {
         //Calling the outputCountDown method to check how it prints
-        outputCountDown();
-       
-        // Generate a random int (to associate with a random tone)
-        int randomInt = randomIntGenerator.generateRandomInt();
-        
-        // Add random int to outputList
-        outputList.add(randomInt);
+         if(firstRound)
+         {
+             outputCountDown();
+             firstRound = false;
+         }
+
+         // Generate a random int (to associate with a random tone)
+         int randomInt = randomIntGenerator.generateRandomInt();
+
+         // Add random int to outputList
+         outputList.add(randomInt);
 
 
-        // Play and print outputList
-        // 
-        for (int element = 0; element < outputList.size(); element++)
-        {
-            if (outputList.get(element).equals(1))
-            {
-                System.out.println("1");
-                toneC.playNPause();
-                
-            }
-            else if (outputList.get(element).equals(3))
-            {
-                System.out.println("3");
-                toneE.playNPause();
-            }
-            else if (outputList.get(element).equals(5))
-            {
-                System.out.println("5");
-                toneG.playNPause();
-            }
-            else if (outputList.get(element).equals(7))
-            {
-                System.out.println("7");
-                toneB.playNPause();
-            }
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-            + "\n\n\n"); 
-        }
-        
+         // Play and print outputList
+         // 
+         for (int element = 0; element < outputList.size(); element++)
+         {
+             if (outputList.get(element).equals(1))
+             {
+                 System.out.println("1");
+                 toneC.playNPause();
+
+             }
+             else if (outputList.get(element).equals(3))
+             {
+                 System.out.println("3");
+                 toneE.playNPause();
+             }
+             else if (outputList.get(element).equals(5))
+             {
+                 System.out.println("5");
+                 toneG.playNPause();
+             }
+             else if (outputList.get(element).equals(7))
+             {
+                 System.out.println("7");
+                 toneB.playNPause();
+             }
+             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+             + "\n\n\n"); 
+         }
+          
     }
     
     /**

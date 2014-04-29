@@ -19,6 +19,7 @@ public class Game
     private Output output;
     private Input input;
     private int menuInput;
+    private boolean firstRound = true;
     
     /**
      * A new instance of Simon Says that begins producing output and 
@@ -40,6 +41,18 @@ public class Game
                 {
                     state=GameState.PLAYING;      
                 }
+                if(menuInput == 2)
+                {
+                    System.out.println("Instructions placeholder!");
+                }
+                if(menuInput == 3)
+                {
+                    System.out.println("Settings placeholder!");
+                }
+                if(menuInput == 4)
+                {
+                    System.out.println("High score placeholder!");
+                }
                 if(menuInput == 5)
                 {
                     System.exit(0);
@@ -50,16 +63,22 @@ public class Game
            while(state==GameState.PLAYING)
            {
                 //Create an instance of the output and input 
-                output = new Output();  
+                if(firstRound)
+                {
+                    output = new Output();  
+                    firstRound = false;
+                }
+                output.produceOutput();
+                
                 input = new Input(output);
                 //The win calculation will be calculated here and return a boolean
                 boolean inputCorrect = compareInOutput();
                 //Conditional statement to be triggered once game is reported 
                 //as being lost
-                if(inputCorrect)
-                    state=GameState.WON;                 
+                if(!inputCorrect)
+                    //state=GameState.WON;                 
                 //Temporary code to trigger won state for demonstration purposes
-                else
+                //else
                     state=GameState.GAMEOVER;
            }   
            //This loop will perform any operations required upon the game being 
@@ -119,12 +138,9 @@ public class Game
             // If not the same then end the game.
             if (!(inputList.get(element).equals(outputList.get(element))))
             {
-                
-                listsMatch = false;
-                
+                listsMatch = false;               
             }
         }        
         return listsMatch;
-    }
-    
+    }    
 }
