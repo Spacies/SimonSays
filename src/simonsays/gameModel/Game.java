@@ -43,15 +43,18 @@ public class Game
                 }
                 if(menuInput == 2)
                 {
+                    cui.printDivider();
                     System.out.println("Instructions placeholder!");
                 }
                 if(menuInput == 3)
                 {
-                    System.out.println("Settings placeholder!");
+                    cui.printDivider();
+                    System.out.println("Settings placeholder!");                 
                 }
                 if(menuInput == 4)
                 {
-                    System.out.println("High score placeholder!");
+                    cui.printDivider();
+                    System.out.println("High score placeholder!");                   
                 }
                 if(menuInput == 5)
                 {
@@ -76,9 +79,7 @@ public class Game
                 //Conditional statement to be triggered once game is reported 
                 //as being lost
                 if(!inputCorrect)
-                    //state=GameState.WON;                 
-                //Temporary code to trigger won state for demonstration purposes
-                //else
+                    //Changes game state to gameover when game lost
                     state=GameState.GAMEOVER;
            }   
            //This loop will perform any operations required upon the game being 
@@ -97,6 +98,7 @@ public class Game
     {
         //A message to be printed to indicate the game was lost
         System.out.println("Sorry, you have lost the game!");
+        firstRound = true;
         //This will change the game state so that the game returns to the menu
         //state=GameState.STARTED;
     }

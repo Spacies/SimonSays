@@ -24,12 +24,14 @@ public class UserInterface {
     public int generateMenu()
     {
         //Print out menu options
+        printDivider();
         System.out.println("Please make a selection(1 - 5):");
         System.out.println("1. Start game");
         System.out.println("2. Instructions");
         System.out.println("3. Settings");
         System.out.println("4. High Scores");
         System.out.println("5. Exit"); 
+        printDivider();
         //Declare and initialise new scanner
         Scanner menuScanner = new Scanner(new InputStreamReader(System.in));
         //Declare and initalise int variable for storing menu input
@@ -57,6 +59,16 @@ public class UserInterface {
         }
         //menuScanner.close();
         return menuInput;      
+    }
+    
+    public void printDivider()
+    {
+        String symbol = "*";
+        for(int i = 0; i < 90; i++)
+        {
+            symbol += "*";
+        }
+        System.out.println(symbol);   
     }
     
 }
