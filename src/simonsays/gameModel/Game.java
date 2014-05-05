@@ -88,8 +88,7 @@ public class Game
            while(state==GameState.GAMEOVER)
            {
                 hasLost();
-                //Temporary program exit until menu and quit option completed
-                state = GameState.STARTED;
+
            }
        }
     }
@@ -100,7 +99,7 @@ public class Game
         System.out.println("Sorry, you have lost the game!");
         firstRound = true;
         //This will change the game state so that the game returns to the menu
-        //state=GameState.STARTED;
+        state=GameState.STARTED;
     }
     
     /**
