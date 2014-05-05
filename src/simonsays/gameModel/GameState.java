@@ -6,12 +6,10 @@ package simonsays.gameModel;
  * @author Jaimes Booth & Sam McGarvey
  * @version 22/03/14
  */
-public enum GameState {
-    
-    //Temporary state variable placeholders, to be adjusted when actually needed
+public enum GameState 
+{
     STARTED,    //The game is starting/in menu
     PLAYING,    //The game is currently playing
     GAMEOVER,   //The game has been lost
-    WON,        //Temporary state for demonstration purposes
     QUIT;       //The user wishes to quit the game
 }

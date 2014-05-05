@@ -13,8 +13,9 @@ import java.util.Scanner;
  *
  * @author Sam
  */
-public class UserInterface {
-    boolean menuSelected = false;
+public class UserInterface 
+{
+    private boolean menuSelected = false;
     
     public UserInterface()
     {
@@ -69,6 +70,32 @@ public class UserInterface {
             symbol += "*";
         }
         System.out.println(symbol);   
+    }
+    
+    public void printInstructions()
+    {
+        boolean instructionsPrinted = false;
+        boolean cancelInstructions = false;
+        Scanner instructionScanner = new Scanner(new InputStreamReader(System.in));
+        while(!cancelInstructions)
+        {
+            if(!instructionsPrinted)
+            {
+                System.out.println("Instructions");
+                System.out.println("The game will display output of either 1, 3, 5 and 7 with a corresponding tone");
+                System.out.println("The user will then be prompted to enter the corresponding digit using the number keys");
+                System.out.println("The game will continue adding additional outputs until the user makes an error");
+                System.out.println("The user can enter multiple inputs on a single line seperated by spaces");
+                System.out.println("Enter any value to continue.");
+                printDivider();
+                instructionsPrinted = true;
+            }
+            if(instructionScanner.hasNext())
+            {
+                instructionScanner.nextLine();
+                cancelInstructions = true;            
+            }           
+        }
     }
     
 }
