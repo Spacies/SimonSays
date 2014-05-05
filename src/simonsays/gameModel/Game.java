@@ -114,8 +114,7 @@ public class Game
            while(state==GameState.GAMEOVER)
            {
                 hasLost();
-                //Temporary program exit until menu and quit option completed
-                state = GameState.STARTED;
+
            }
        }
     }
@@ -169,6 +168,7 @@ public class Game
             System.out.println(name + ", you have been immortalized on the "
                     + "highscore table with a score of " + finalScore);
         }
+        state=GameState.STARTED;
     }
     
     /**
