@@ -1,6 +1,7 @@
 package simonsays.gameModel;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * This is the class that knows the Simon Says game rules and enforces these
@@ -11,6 +12,8 @@ import java.util.List;
  * @version 24/03/2014
  *  Modified game to use game states
  *  Added compareInOutput()
+ * @version 05/04/13 Jaimes
+ *  Added calls to Highscore in Game() and hasLost()
  */
 public class Game 
 {    
@@ -20,6 +23,7 @@ public class Game
     private Input input;
     private int menuInput;
     private boolean firstRound = true;
+    private Highscore highscore = new Highscore();
     
     /**
      * A new instance of Simon Says that begins producing output and 
@@ -27,6 +31,15 @@ public class Game
      */ 
     public Game() 
     {
+        // Play welcome tones to orient the player's ear
+        //output.playWelcomeSound();
+        
+        System.out.println("Welcome to Simon Says!");
+        
+        // Check highscore table exists
+        if (!highscore.highscoreExists())
+            // Create highscore table if it doesn't exist
+            highscore.createHighscoreTable();
         
        while(state!=GameState.QUIT)
        {
@@ -54,7 +67,20 @@ public class Game
                 if(menuInput == 4)
                 {
                     cui.printDivider();
-                    System.out.println("High score placeholder!");                   
+                    //System.out.println("High score placeholder!"); 
+                    
+                    // If highscore table doesn't exist
+                    if (!highscore.highscoreExists())
+                    {
+                        //System.out.println("Table doesn't exist");
+                        
+                        //Create the highscore table
+                        highscore.createHighscoreTable();
+                    
+                    }
+                    
+                    // Print the highscore table
+                    highscore.printHighscore();
                 }
                 if(menuInput == 5)
                 {
@@ -101,11 +127,54 @@ public class Game
         firstRound = true;
         //This will change the game state so that the game returns to the menu
         //state=GameState.STARTED;
+        
+        // Check if the finalScore is a highscore
+        // finalScore = the final output list - 1 with 0 as a minimum.
+        int finalScore;
+        List<Integer> outputList = output.getOutputList();
+        finalScore = outputList.size() - 1;
+        if (finalScore < 0)
+            finalScore = 0;
+        
+        // If finalScore is a highscore
+        if (highscore.checkIfHighscore(finalScore))
+        {
+            System.out.println("");
+            System.out.println("Congratulations, you have made the top ten!");
+            
+            // Ask for handle
+            
+            // Get input
+            Scanner scanner = new Scanner(System.in);
+            
+            // Start with invalid string to trigger the following while loop.
+            String name = "Invalid";
+
+        
+            // Check whether handle is three characters in length  
+            // If not, prompt the user for input again.
+            while (name.length() != 3)
+            {
+
+                //Prompt for handle
+                System.out.println("Please enter your Handle (exactly three characters)");
+
+                name = scanner.next();
+
+            }
+
+            // Handle passed the 3 character check.
+            // Add handle and score to the highscore table
+            highscore.insertHighscore(name, finalScore);
+            System.out.println(name + ", you have been immortalized on the "
+                    + "highscore table with a score of " + finalScore);
+        }
     }
     
     /**
      * Compares the game's input with the game's output. If they don't
      * correlate, game ends.
+     * @return listsMatch true if the lists match, otherwise false.
      */
     protected boolean compareInOutput()
     {
