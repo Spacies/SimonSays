@@ -16,7 +16,7 @@ import java.util.LinkedList;
  */
 public class Output
 {
-    boolean firstRound = true;
+    private boolean firstRound = true;
     private MakeSound keySound; // The sound made when a key is pressed.
     
     // The four game tones

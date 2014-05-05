@@ -38,10 +38,6 @@ public class Input {
 
     public Input(Output output)
     {
-        // Commented out and replaced with receive input for cross
-        // cross-platform compatibility.
-        
-        //handleInput();
         this.output = output;
         receiveInputTest();
     }
@@ -59,62 +55,64 @@ public class Input {
      * Enter moves to next line and previous input remains. This will
      * continue until "Quit" is entered
      */
-    private void receiveInput() 
-    {
-        //Automatic fix by netbeans to handle IOExceptions using try-catch
-        try 
-        {         
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String line = "";   
-            System.out.println("Please repeat the output:");
-            // A prompt
-            System.out.println(">");
-            //List<Integer> outputList = output.getOutputList();
-            //Creates user-defined exit from method
-            //while (inputList.size()!=outputList.size())
-            while (inputList.size()!=output.getOutputList().size())
-            {
-                //Stores the typed input as a String variable
-                line = br.readLine();
+    
+//    private void receiveInput() 
+//    {
+//        //Automatic fix by netbeans to handle IOExceptions using try-catch
+//        try 
+//        {         
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//            String line = "";   
+//            System.out.println("Please repeat the output:");
+//             //List<Integer> outputList = output.getOutputList();
+//            //Creates user-defined exit from method
+//            //while (inputList.size()!=outputList.size())
+//            while (inputList.size()!=output.getOutputList().size())
+//            {
+//                //Stores the typed input as a String variable
+//                line = br.readLine();
+//
+//                // Check for press of button and play appropriate tone.
+//                // Need to press enter to pass input.
+//                // Add entered input to inputList.
+//                if (line.equals("1"))
+//                {
+//                    toneC.playNPause();
+//                    inputList.add(1);
+//                }
+//                else if (line.equals("3"))
+//                {
+//                    toneE.playNPause();
+//                    inputList.add(3);
+//                }
+//                else if (line.equals("5"))
+//                {
+//                    toneG.playNPause();
+//                    inputList.add(5);
+//                }
+//                else if (line.equals("7"))
+//                {
+//                    toneB.playNPause();
+//                    inputList.add(7);
+//                }
+//
+//                //Temporary means of clearing screen within the netbeans IDE
+//                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+//                        + "\n\n\n");           
+//            }
+//            
+//            // Close the buffered reader.
+//            br.close();
+//        } 
+//        catch (IOException ex) 
+//        {
+//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
 
-                // Check for press of button and play appropriate tone.
-                // Need to press enter to pass input.
-                // Add entered input to inputList.
-                if (line.equals("1"))
-                {
-                    toneC.playNPause();
-                    inputList.add(1);
-                }
-                else if (line.equals("3"))
-                {
-                    toneE.playNPause();
-                    inputList.add(3);
-                }
-                else if (line.equals("5"))
-                {
-                    toneG.playNPause();
-                    inputList.add(5);
-                }
-                else if (line.equals("7"))
-                {
-                    toneB.playNPause();
-                    inputList.add(7);
-                }
 
-                //Temporary means of clearing screen within the netbeans IDE
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-                        + "\n\n\n");           
-            }
-            
-            // Close the buffered reader.
-            br.close();
-        } 
-        catch (IOException ex) 
-        {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-    }
     /**
      * An alternative input method that uses a scanner for input instead of a buffered reader.
      */
@@ -178,8 +176,6 @@ public class Input {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
             + "\n\n\n");
         }
-        //inputScanner.close();
-
     }    
     
     /**

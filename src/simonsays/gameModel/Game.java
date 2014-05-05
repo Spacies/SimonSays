@@ -43,29 +43,38 @@ public class Game
         
        while(state!=GameState.QUIT)
        {
-           //This loop will contain menu elements and will be exited through
-           //explicity setting the state to playing via selecting a "Start 
-           //game" menu option
-           while(state==GameState.STARTED)
-           {
-                UserInterface cui = new UserInterface();
+            //Create a user interface object 
+            UserInterface cui = new UserInterface();
+            //This loop contains code for producing a CUI menu and handling user
+            //selections. This loop continues until the state is explicitly changed 
+            //to either 'PLAYING' or 'QUIT'.
+            while(state==GameState.STARTED)
+            {
+                //Call cui method for generating menu
                 menuInput = cui.generateMenu();
+                //Perform relevant action upon user menu selection
+                //1 - Start Game, 2 - Print instructions, 3 - Print settings,
+                //4 - High scores, 5 - Exit game               
                 if(menuInput == 1)
                 {
+                    //Set state to playing, starting an instance of the game
                     state=GameState.PLAYING;      
                 }
                 if(menuInput == 2)
                 {
+                    //Print a divider and instructions placeholder
                     cui.printDivider();
-                    System.out.println("Instructions placeholder!");
+                    cui.printInstructions();
                 }
                 if(menuInput == 3)
                 {
+                    //Print a divider and settings placeholder
                     cui.printDivider();
                     System.out.println("Settings placeholder!");                 
                 }
                 if(menuInput == 4)
                 {
+                    //Print a divider and a high scores place holder
                     cui.printDivider();
                     //System.out.println("High score placeholder!"); 
                     
@@ -84,23 +93,28 @@ public class Game
                 }
                 if(menuInput == 5)
                 {
+                    //Change state to quit, terminating the program
                     state=GameState.QUIT;
                 }
            }
-           //This loop will contain any code required to successfully play the
-           //game until the game is lost (or won in the demo version)
+           //This loop continues producing output and receiving input until the
+           //state is explicitly changed to 'GAMEOVER'.
            while(state==GameState.PLAYING)
            {
                 //Create an instance of the output and input 
                 if(firstRound)
                 {
+                    //Create a new output object during first round
                     output = new Output();  
+                    //Set first round to false so new output is not created again
                     firstRound = false;
                 }
+                //Begins printing relevant output and playing corresponding tones
                 output.produceOutput();
                 
+                //Creates an input option passing the current output as a parameter
                 input = new Input(output);
-                //The win calculation will be calculated here and return a boolean
+                //Calculates whether the user has matched input or not
                 boolean inputCorrect = compareInOutput();
                 //Conditional statement to be triggered once game is reported 
                 //as being lost
@@ -109,20 +123,22 @@ public class Game
                     state=GameState.GAMEOVER;
            }   
            //This loop will perform any operations required upon the game being 
-           //lost, and will explicitly set the state back to STARTED to return to
-           //the menu
+           //lost
            while(state==GameState.GAMEOVER)
            {
-                hasLost();
+               cui.printDivider();
+               hasLost();
 
            }
        }
     }
     
     public void hasLost()
-    {
+    {      
         //A message to be printed to indicate the game was lost
         System.out.println("Sorry, you have lost the game!");
+        //Sets variable to true so new output object is generated if user starts
+        //another instance of the game from the menu
         firstRound = true;
         //This will change the game state so that the game returns to the menu
         //state=GameState.STARTED;
@@ -180,13 +196,15 @@ public class Game
     {
         
         // Get game's output list.
-        
         List<Integer> outputList = output.getOutputList();
+        // Get game's input list.
         List<Integer> inputList = input.getInputList();
         
-        System.out.println("InputList = " + inputList);
-        System.out.println("OutputList = " + outputList);
+        //Temporary statements for printing input and output as sense check
+        //System.out.println("InputList = " + inputList);
+        //System.out.println("OutputList = " + outputList);
         
+        //Creates an initialises a boolean variable to compare output
         boolean listsMatch = true;
 
         // Compare input and output string
