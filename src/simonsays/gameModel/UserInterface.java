@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package simonsays.gameModel;
 
@@ -12,6 +7,8 @@ import java.util.Scanner;
 /**
  *
  * @author Sam
+ * @modified 05/05/14 Jaimes
+ *  Added user prompt to generateMenu()
  */
 public class UserInterface 
 {
@@ -33,6 +30,8 @@ public class UserInterface
         System.out.println("4. High Scores");
         System.out.println("5. Exit"); 
         printDivider();
+        // User input prompt 
+        System.out.print(">");
         //Declare and initialise new scanner
         Scanner menuScanner = new Scanner(new InputStreamReader(System.in));
         //Declare and initalise int variable for storing menu input

@@ -20,6 +20,8 @@ import java.util.logging.Logger;
  *  Added getInput()
  * @modified 25/03/14
  *  Commented out handleInput()
+ * @modified 05/05/14 Jaimes
+ *  Added user prompt to receiveInput(), receiveInputTest()
  */
 public class Input {
     // The four game tones
@@ -122,6 +124,8 @@ public class Input {
         int input = 0;
         //Prints statement requesting input.
         System.out.println("Please repeat the output:");
+        // User input prompt
+        System.out.print(">");
         //A loop conditional on user input being the same length as user output
         while (inputList.size()!=output.getOutputList().size())
         {
@@ -163,7 +167,7 @@ public class Input {
             }
             else
             {
-                 System.out.println("Please enter a valid input");               
+                 System.out.println("Please enter a valid input (1, 3, 5 or 7");               
             }
         }
         //Temporary means of clearing screen within the netbeans IDE
