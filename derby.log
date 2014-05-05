@@ -1,11 +1,16 @@
-Mon May 05 09:49:59 NZST 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Mon May 05 21:52:09 NZST 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Mon May 05 09:49:59 NZST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-c937-0c1b-ffffcbfe52a7 
-on database directory /Users/jaimesbooth/NetBeansProjects/SimonSays/SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@2ed4a1d3 
+Mon May 05 21:52:10 NZST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-cbcc-355f-ffffcbfe52a7 
+on database directory /Users/jaimesbooth/NetBeansProjects/SimonSays/SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@9cc3baa 
 Loaded from file:/Users/jaimesbooth/NetBeansProjects/SimonSays/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_25-b15
 user.dir=/Users/jaimesbooth/NetBeansProjects/SimonSays/javadb
 derby.system.home=/Users/jaimesbooth/NetBeansProjects/SimonSays
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Mon May 05 22:35:53 NZST 2014: Shutting down Derby engine
+----------------------------------------------------------------
+Mon May 05 22:35:53 NZST 2014:
+Shutting down instance a816c00e-0145-cbcc-355f-ffffcbfe52a7 on database directory /Users/jaimesbooth/NetBeansProjects/SimonSays/SimonSaysDB with class loader sun.misc.Launcher$AppClassLoader@9cc3baa 
