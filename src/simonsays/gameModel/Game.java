@@ -24,6 +24,7 @@ public class Game
     private int menuInput;
     private boolean firstRound = true;
     private Highscore highscore = new Highscore();
+    private Difficulty difficulty = Difficulty.NORMAL;
     
     /**
      * A new instance of Simon Says that begins producing output and 
@@ -105,7 +106,7 @@ public class Game
                 if(firstRound)
                 {
                     //Create a new output object during first round
-                    output = new Output();  
+                    output = new Output(difficulty);  
                     //Set first round to false so new output is not created again
                     firstRound = false;
                 }
@@ -113,7 +114,7 @@ public class Game
                 output.produceOutput();
                 
                 //Creates an input option passing the current output as a parameter
-                input = new Input(output);
+                input = new Input(output, difficulty);
                 //Calculates whether the user has matched input or not
                 boolean inputCorrect = compareInOutput();
                 //Conditional statement to be triggered once game is reported 

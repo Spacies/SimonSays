@@ -24,25 +24,25 @@ import java.util.logging.Logger;
  *  Added user prompt to receiveInput(), receiveInputTest()
  */
 public class Input {
-    // The four game tones
-    final MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
-    final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
-    final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
-    final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");
-    
     // The input list of integers representing responses to the
     // game questions.
     private List<Integer> inputList = new LinkedList<>();
     private Output output;
-   
+    private Difficulty difficulty;   
+    
+    // The four game tones
+    final MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
+    final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
+    final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
+    final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");    
 
-    public Input(Output output)
+    public Input(Output output, Difficulty difficulty)
     {
+        
         this.output = output;
+        this.difficulty = difficulty;
         receiveInputTest();
     }
-
-    
     
     /**
      * Code obtained from web - Input is typed into command line and then

@@ -18,6 +18,7 @@ public class Output
 {
     private boolean firstRound = true;
     private MakeSound keySound; // The sound made when a key is pressed.
+    private Difficulty difficulty;
     
     // The four game tones
     final MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
@@ -35,9 +36,9 @@ public class Output
     /**
      * Creates output to the Simon Says game.
      */
-    public Output()
+    public Output(Difficulty difficulty)
     {
-              
+        this.difficulty = difficulty;
     }
     
     public void produceOutput()
@@ -62,23 +63,35 @@ public class Output
          {
              if (outputList.get(element).equals(1))
              {
-                 System.out.println("1");
+                 if(difficulty!=Difficulty.HARD)
+                 {
+                    System.out.println("1");
+                 }
                  toneC.playNPause();
 
              }
              else if (outputList.get(element).equals(3))
              {
-                 System.out.println("3");
+                 if(difficulty!=Difficulty.HARD)
+                 {                 
+                    System.out.println("3");
+                 }
                  toneE.playNPause();
              }
              else if (outputList.get(element).equals(5))
              {
-                 System.out.println("5");
+                 if(difficulty!=Difficulty.HARD)
+                 {                 
+                    System.out.println("5");
+                 }
                  toneG.playNPause();
              }
              else if (outputList.get(element).equals(7))
              {
-                 System.out.println("7");
+                 if(difficulty!=Difficulty.HARD)
+                 { 
+                    System.out.println("7");
+                }
                  toneB.playNPause();
              }
              System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
