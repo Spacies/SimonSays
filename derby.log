@@ -2798,3 +2798,9 @@ java.runtime.version=1.7.0_25-b15
 user.dir=/Users/jaimesbooth/NetBeansProjects/SimonSays/javadb
 derby.system.home=/Users/jaimesbooth/NetBeansProjects/SimonSays
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed May 07 16:54:23 NZST 2014: Shutting down Derby engine
+----------------------------------------------------------------
+Wed May 07 16:54:23 NZST 2014:
+Shutting down instance 67bb80b4-0145-d4d5-1f00-ffffcbfe52a7 on database directory /Users/jaimesbooth/NetBeansProjects/SimonSays/SimonSaysDB with class loader sun.misc.Launcher$AppClassLoader@2ed4a1d3 
+----------------------------------------------------------------
