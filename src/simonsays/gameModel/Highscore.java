@@ -9,8 +9,11 @@ import java.util.logging.Logger;
  * Generates and manipulates a database of highscores for SimonSays
  * @author Jaimes Booth 1305390 & Sam McGarvey
  * @version 01/05/14
- * @version 05/05/14 Jaimes
+ * @modified 05/05/14 Jaimes
  *  Debugged the methods to a working state.
+ * @modified 07/06/14 Jaimes
+ *  New score now inserts correctly into Highscore
+ *  Prettied up the highscore print out
  */
 public class Highscore
 {
@@ -34,7 +37,6 @@ public class Highscore
             // Notify of DB connection
             //System.out.println(url + " connected...");
 
-
         }
         catch(SQLException ex) 
         {
@@ -42,27 +44,28 @@ public class Highscore
         }
     }
     
+    
     //Currently not used
-    /**
-     * Connects to the SimonSays database.
-     */
-    public void connectSimonSaysDB()
-    {
-        try
-        {
-            // Creates instance of a Connection object
-            conn = DriverManager.getConnection(url, username, password);
-            
-            // Notify of DB connection
-            System.out.println(url + " connected...");
-
-
-        }
-        catch(SQLException ex) 
-        {
-            System.err.println("SQLException: " + ex.getMessage());
-        }
-    }
+//    /**
+//     * Connects to the SimonSays database.
+//     */
+//    public void connectSimonSaysDB()
+//    {
+//        try
+//        {
+//            // Creates instance of a Connection object
+//            conn = DriverManager.getConnection(url, username, password);
+//            
+//            // Notify of DB connection
+//            System.out.println(url + " connected...");
+//
+//
+//        }
+//        catch(SQLException ex) 
+//        {
+//            System.err.println("SQLException: " + ex.getMessage());
+//        }
+//    }
 
     /**
      * Checks whether a highscore table exists
@@ -76,15 +79,9 @@ public class Highscore
         
         try
         {
-            // links the statements to the specified database connection (conn)
-            //Statement statement = conn.createStatement();
 
-            
             // Create a variable for the table name
             String newTable = "Highscore";
-            
-            // Connect to the DB
-            //connectSimonSaysDB();
 
             // Get the connection metadata
             DatabaseMetaData dbmd = conn.getMetaData();
@@ -98,10 +95,9 @@ public class Highscore
             {
                 // table exists
                 highscoreExists = true;
-
             } 
             
-            //rs.close();
+            rs.close();
             
         }
         catch (SQLException ex) 
@@ -120,17 +116,15 @@ public class Highscore
 
     /**
      * Creates a new table called Highscore in SimonSaysDB and inserts 
-     * 10 empty records into the Promotion table. 
+     * 10 empty records into the table. 
      */
     public void createHighscoreTable()
     {
         
-        //System.out.println("Reached createPromotionTable");
+        //System.out.println("Reached creaeHighscoreTable");
 
         try
         {
-            // Connect to DB
-            //connectSimonSaysDB();
             
             // links the statements to the specified database connection (conn)
             Statement statement = conn.createStatement();
@@ -182,6 +176,8 @@ public class Highscore
                 statement.executeUpdate(sqlInsert);
 
                 //System.out.println("Empty records inserted into Highscore table");
+                
+                rs.close();
 
             } 
             else
@@ -213,9 +209,6 @@ public class Highscore
         try 
         {
             
-            // Connect to DB
-            //connectSimonSaysDB();
-            
             // Create a statement object to use on this connection
             // make it updatable.
             //http://docs.oracle.com/javase/tutorial/jdbc/basics/retrieving.html
@@ -232,6 +225,8 @@ public class Highscore
             
             //System.out.println("Highscore resultSet created");
             
+            // Don't want to close the result set as it is returned
+            // to where this method was called from
             //rs.close();
             
         }
@@ -257,7 +252,8 @@ public class Highscore
             ResultSet highscoreResultSet = getHighscoreResultset();
             
             System.out.println("HIGHSCORES:");
-            System.out.println("************");
+            System.out.println("Rank    Name    Score");
+            System.out.println("*********************");
             
             // While there are records in the result set of the table
             while( highscoreResultSet.next() )
@@ -266,12 +262,14 @@ public class Highscore
                 int rank = highscoreResultSet.getInt("Rank");
                 String name = highscoreResultSet.getString("Name");
                 int score = highscoreResultSet.getInt("Score");
-                        
-                System.out.println(rank + " " + name + " " + score);
+                
+                // Print out the highscores with tabs seperating values for 
+                // alignment
+                System.out.println(rank + "\t" + name + "\t" + score);
                 
             }            
             
-            //highscoreResultSet.close();
+            highscoreResultSet.close();
             
         } 
         catch (SQLException ex) 
@@ -283,7 +281,7 @@ public class Highscore
     /**
      * Checks whether the specified score is a highscore
      * @param newScore The integer value of the score.
-     * @return The boolean of whether the score is a highscore or not.
+     * @return True if a highscore, false if not
      */
     public boolean checkIfHighscore(int newScore)
     {
@@ -323,6 +321,7 @@ public class Highscore
             }
             
             //System.out.println("Got through checkIfHighscore()");
+            tenthScoreResultSet.close();
             
         }
         catch (SQLException ex) 
@@ -334,80 +333,171 @@ public class Highscore
         return highscore;
     }
     
-    
+
     /**
      * Inserts a specified new score into the appropriate
-     * position in the highscore database, replacing the
-     * previous value.
+     * position in the highscore database, and displaces the
+     * following values down the ranks.
      * 
-     * @param handle The name of the highscore user
+     * @param handle The player's name abbreviated to three characters
      * @param newScore The value of the new score
      * 
      */
     public void insertHighscore(String handle, int newScore)
     {
         
-        int newRank = 11;
-        boolean scoreInserted = false;
-        
-        // Iterate over the result, starting from #1
         try 
         {
-            
-            // Connect to DB
-            //connectSimonSaysDB();
-            
-            // links the statements to the specified database connection (conn)
-            Statement statement = conn.createStatement();
-            //Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-            //       ResultSet.CONCUR_UPDATABLE);
-            //http://docs.oracle.com/javase/tutorial/jdbc/basics/retrieving.html
 
+            /* Insert new highscore into the highscore table */
+            
             // Get the highscore result set
             ResultSet highscoreRS = getHighscoreResultset();
-
-            // While there are records in the result set of the join table
-            // and the new score hasn't been inserted
-            while( highscoreRS.next() && !scoreInserted )
-            {
-                // Decrease the current row reference
-                newRank -= newRank;
-                
-                // Get the row values by specifying the columns
-                int rowScore = highscoreRS.getInt(3);
-                
-                if (newScore > rowScore)
-                {
-                    // Replace this row
-                    // Insert name and score into the table
-//                    String sqlInsert = "INSERT INTO Highscore VALUES " +
-//                        "(" + newRank + ",'" + handle + "'," + newScore + ")";
-                    
-                    //int rank = highscoreRS.getInt("Rank");
-
-                    
-                    //String name = highscoreRS.getString("Name");
-                    highscoreRS.updateObject("Name", handle);
-                    
-                    //int score = highscoreRS.getInt("Score");
-                    highscoreRS.updateObject("Score", newScore);
-                    
-                    //statement.executeUpdate(sqlInsert);
-                    
-                    highscoreRS.updateRow();
-                    // Why is specialPrice the same as price when printed here
-                    // but correct when insterted in table?
-                    //System.out.println(title + " , " + specialPrice);
-                    
-                    scoreInserted = true;
-   
-                }
-                        
-                //System.out.println(name + " " + score);
-                
-            }            
             
-            //highscoreRS.close();
+            // Move the cursor to the insert row.
+            // The insert row is a special 
+            // row associated with an updatable result set. It is essentially 
+            // a buffer where a new row can be constructed by calling the 
+            // updater methods prior to inserting the row into the result set
+            highscoreRS.moveToInsertRow();
+            
+            int newRank = 11; // Dummy rank for new highscore
+            
+            // Update the current row attributes
+            highscoreRS.updateInt("Rank", newRank);
+            highscoreRS.updateString("Name", handle);
+            highscoreRS.updateInt("Score", newScore);
+
+            // Insert the contents of the insert row into the database.
+            highscoreRS.insertRow();
+            
+            //System.out.println("New score inserted");
+            
+            // Close the result set to prevent concurrence errors
+            highscoreRS.close();
+            
+            
+            /* Create temporary table to store the sorted top ten */
+
+            // Create a variable for the table name
+            String newTable = "TempTable";
+
+            // Get the connection metadata
+            DatabaseMetaData dbmd = conn.getMetaData();
+
+            // Get a result set of the specified table from the 
+            // database metadata
+            ResultSet dbmdRS = dbmd.getTables(null, null, newTable.toUpperCase(), null);
+
+            // Create a stament object associated with the database connection
+            // to pass sql statements to and from the database
+            //Statement statement = conn.createStatement();
+            Statement statement = conn.createStatement(
+                    ResultSet.TYPE_SCROLL_SENSITIVE, 
+                    ResultSet.CONCUR_UPDATABLE);
+            
+            // Check if the "tempTable" table exists
+            if(!dbmdRS.next())
+            {
+                // Doesn't contain table so create one
+
+                // Create a new table with the specified columns
+                String sqlCreateTable = "CREATE TABLE " + newTable + 
+                        " (Rank INT, Name VARCHAR(3), Score INT)";
+
+                // Execute the SQL to the DB
+                statement.executeUpdate(sqlCreateTable);
+
+                //System.out.println("tempTable table created");
+            }
+            
+            // Close the result set to prevent concurrence errors
+            dbmdRS.close();
+            
+            
+            /* Sort highscore table and copy the top ten scores to tempTable */
+            
+            // Sort table by score
+            //System.out.println("Sorting table by score");
+            String sqlQuery =   "SELECT * " +
+                                "FROM Highscore " +
+                                "ORDER BY Score DESC";
+
+//            statement = conn.createStatement(
+//                    ResultSet.TYPE_SCROLL_SENSITIVE, 
+//                    ResultSet.CONCUR_UPDATABLE);
+            
+            // Get the result set of the sorted highscore table by executing
+            // the SQL query.
+            ResultSet highscoreSortedRS = statement.executeQuery(sqlQuery);
+            
+            //System.out.println("highscore table sorted");
+            
+            // Update row ranks to represent score ranks
+            newRank = 1;
+            
+            // Create new statement for working with tempTable
+            // while keeping old statement open (highscore result set)
+            Statement tempTableStatement = conn.createStatement(
+                    ResultSet.TYPE_SCROLL_SENSITIVE, 
+                    ResultSet.CONCUR_UPDATABLE);
+
+            // While there are records in the result set of the sorted 
+            // highscore table and the ten highscores have not been
+            // copied to the temporary table
+            while(highscoreSortedRS.next() && newRank < 11)
+            {
+                // Get this row's Name attribute from Highscore table
+                String name = (String)highscoreSortedRS.getObject("Name");
+                
+                // Get this row's Score attribute from Highscore table
+                int score = highscoreSortedRS.getInt("Score");
+            
+                // Copy this row from Highscore into tempTable
+                // Replacing rank with current row iteration
+                String sqlInsert = "INSERT INTO " + newTable + " VALUES " +
+                        "(" + newRank + ", '" + name + "' ," + score + ")";
+                
+                // Execute the SQL Update to the DB 
+                tempTableStatement.executeUpdate(sqlInsert);
+
+                // Increase the row rank for next iteration
+                //System.out.println("Rank " + newRank + " updated");
+                ++newRank;
+                
+            }
+            
+            // Close the result set & statement to prevent concurrence errors
+            highscoreSortedRS.close();
+            tempTableStatement.close();
+            
+            
+            /* Rename temporary table to Highscore */
+            // Drop rows with ranks > 10 by replacing original highscore table
+            // with temporary table
+            //System.out.println("Deleting original Highscore Table");
+            
+            // Delete the Highscore table
+            String sqlDrop =   "DROP Table Highscore ";
+            
+            // Execute the SQL to delete the Highscore table
+            statement.executeUpdate(sqlDrop);
+            //System.out.println("Highscore Table deleted");
+            
+            // Rename temporary table to Highscore, resurrecting the phoenix 
+            // from the flames
+            //System.out.println("Renaming tmp table");
+            
+            // Rename temp to Highscore
+            String sqlUpdate =   "RENAME TABLE TempTable TO Highscore";
+            
+            // Execute the SQL to Rename the temp table
+            statement.executeUpdate(sqlUpdate);
+            
+            //System.out.println("temp table renamed");   
+            
+            // Close the statement to prevent concurrence errors
+            statement.close();
             
         } 
         catch (SQLException ex) 
