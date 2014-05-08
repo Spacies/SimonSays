@@ -165,5 +165,5 @@ public class UserInterface
         }      
         return updateDifficulty;
     }
-    
+
 }
