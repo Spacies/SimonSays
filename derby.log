@@ -1,7 +1,7 @@
-Thu May 08 11:16:42 NZST 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Thu May 08 16:43:59 NZST 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu May 08 11:16:43 NZST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-d8f9-8619-ffffcbfe52a7 
+Thu May 08 16:44:00 NZST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-da25-296d-ffffcbfe52a7 
 on database directory /Users/jaimesbooth/NetBeansProjects/SimonSays/SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@2ed4a1d3 
 Loaded from file:/Users/jaimesbooth/NetBeansProjects/SimonSays/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
