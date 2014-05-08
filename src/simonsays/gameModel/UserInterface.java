@@ -85,8 +85,10 @@ public class UserInterface
                 System.out.println("The user will then be prompted to enter the corresponding digit using the number keys");
                 System.out.println("The game will continue adding additional outputs until the user makes an error");
                 System.out.println("The user can enter multiple inputs on a single line seperated by spaces");
-                System.out.println("Enter any value to continue.");
+                System.out.println("Enter any value to continue.");               
                 printDivider();
+                // User input prompt
+                System.out.print(">");
                 instructionsPrinted = true;
             }
             if(instructionScanner.hasNext())

@@ -128,10 +128,10 @@ public class Input {
         System.out.print(">");
         //A loop conditional on user input being the same length as user output
         while (inputList.size()!=output.getOutputList().size())
-        {
+        {         
             //Checks if input is integer
             if(inputScanner.hasNextInt())
-            {
+            {   
                 //Stores integer to input variable
                 input = inputScanner.nextInt();    
             }
