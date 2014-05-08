@@ -9,11 +9,13 @@ import java.util.Scanner;
  * 
  * @author Jaimes Booth & Sam McGarvey
  * @version 17/03/2014
- * @version 24/03/2014
+ * @modified 24/03/2014
  *  Modified game to use game states
  *  Added compareInOutput()
- * @version 05/04/13 Jaimes
+ * @modified 05/04/13 Jaimes
  *  Added calls to Highscore in Game() and hasLost()
+ * @modified 08/04/13 Jaimes
+ *  Added confirmation prompt when entering highscore in hasLost()
  */
 public class Game 
 {    
@@ -150,7 +152,7 @@ public class Game
         //state=GameState.STARTED;
         
         // Check if the finalScore is a highscore
-        // finalScore = the final output list - 1 with 0 as a minimum.
+        // finalScore = the final output list length - 1 with 0 as a minimum.
         int finalScore;
         List<Integer> outputList = output.getOutputList();
         finalScore = outputList.size() - 1;
@@ -160,35 +162,90 @@ public class Game
         // If finalScore is a highscore
         if (highscore.checkIfHighscore(finalScore))
         {
-            System.out.println("");
-            System.out.println("Congratulations, you have made the top ten!");
             
-            // Ask for handle
+            boolean entryCancelled = false;
             
             // Get input
             Scanner scanner = new Scanner(System.in);
             
-            // Start with invalid string to trigger the following while loop.
-            String name = "Invalid";
+            // Prompt to confirm highscore entry
+            System.out.println("");
+            System.out.println("Congratulations, you have made the top ten!");
+            System.out.println("Enter 5 to cancel to the main menu, anything else to continue entering your name.");
+            // User input prompt
+            System.out.print(">");
+            
+            String confirmHandleEntry = (String)scanner.next();
 
-        
-            // Check whether handle is three characters in length  
-            // If not, prompt the user for input again.
-            while (name.length() != 3)
+            // Check if player gas cancelled highscore entry
+            if (confirmHandleEntry.equals("5"))
+                // highscore entry cancelled
+                entryCancelled = true;
+
+            // Start with handle unconfirmed to trigger highscore entry prompt loop
+            boolean handleConfirmed = false;
+            // Start with an invalid string to trigger the handle entry prompt loop.
+            String handle = "Invalid";
+
+            // Repeat while handle is unconfirmed and entry has not been cancelled
+            while (!handleConfirmed && !entryCancelled)
             {
 
-                //Prompt for handle
-                System.out.println("Please enter your Handle (exactly three characters)");
+                // Ask for handle
 
-                name = scanner.next();
+                // Check whether handle is three characters in length  
+                // If not, prompt the user for input again.                
+                while (handle.length() != 3)
+                {
 
+                    //Prompt for correct handle length
+                    System.out.println("");
+                    System.out.println("Please enter your Handle. Exactly three characters please.");
+                    // User input prompt
+                    System.out.print(">");
+
+                    handle = scanner.next();
+
+                }
+
+                //Confirm handle with player
+                System.out.println("");
+                System.out.println("Do you want to enter \"" + handle + "\" as your entry into the highscores?" );
+                System.out.println("Please enter 1 to confirm, 5 to cancel to the main menu or anything else to re-enter your handle.");
+                // User input prompt
+                System.out.print(">");
+                
+                confirmHandleEntry = (String)scanner.next();
+
+                // Check if user has confirmed entry, canceled entry
+                // or wishes to re-enter handle.
+                if (confirmHandleEntry.equals("1"))
+                    handleConfirmed = true;
+                else if (confirmHandleEntry.equals("5"))
+                {
+                    entryCancelled = true;
+                    //handleConfirmed = true;
+                }
+                else
+                    // Re-enter handle
+                    // Reset to trigger incorrect handle loop
+                    handle = "invalid";
+
+            } 
+
+            // Check that highscore entry has npt been cancelled by player
+            if (!entryCancelled)
+            {
+                // highscore entry confirmed
+                // Handle confirmed.
+                // Handle passed the 3 character check.
+                // Add handle and score to the highscore table
+                highscore.insertHighscore(handle, finalScore);
+                System.out.println("");
+                System.out.println(handle + ", you have been immortalized on the "
+                        + "highscore table with a score of " + finalScore);
             }
-
-            // Handle passed the 3 character check.
-            // Add handle and score to the highscore table
-            highscore.insertHighscore(name, finalScore);
-            System.out.println(name + ", you have been immortalized on the "
-                    + "highscore table with a score of " + finalScore);
+  
         }
         state=GameState.STARTED;
     }
