@@ -74,7 +74,7 @@ public class Game
                 {
                     //Print a divider and settings placeholder
                     cui.printDivider();
-                    System.out.println("Settings placeholder!");                 
+                    difficulty = cui.changeSettings(difficulty);
                 }
                 if(menuInput == 4)
                 {
@@ -104,7 +104,6 @@ public class Game
                     System.out.print(">");
 
                     Scanner inputScanner = new Scanner(System.in);
-
                     String input = inputScanner.next();
 
                     // Check whether the player wants to quit
@@ -129,7 +128,7 @@ public class Game
                     //Set first round to false so new output is not created again
                     firstRound = false;
                 }
-                if(output.getOutputList().size()>5)
+                if(output.getOutputList().size()>3)
                 {
                     difficulty = Difficulty.HARD;
                     output.setDifficulty(difficulty);
