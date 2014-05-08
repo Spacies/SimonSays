@@ -17,6 +17,8 @@ import java.util.Scanner;
  * @modified 08/04/13 Jaimes
  *  Added confirmation prompt when entering highscore in hasLost()
  *  Added confirmation prompt before exit
+ *  Added logic to prevent Hard difficulty being automatically triggered during
+ *  easy game play.
  */
 public class Game 
 {    
@@ -128,7 +130,7 @@ public class Game
                     //Set first round to false so new output is not created again
                     firstRound = false;
                 }
-                if(output.getOutputList().size()>3)
+                if(output.getOutputList().size()>3 && difficulty != difficulty.EASY)
                 {
                     difficulty = Difficulty.HARD;
                     output.setDifficulty(difficulty);
