@@ -94,8 +94,10 @@ public class Output
                 }
                  toneB.playNPause();
              }
-             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-             + "\n\n\n"); 
+             if(difficulty!=Difficulty.EASY)
+             {
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); 
+             }
          }
           
     }
@@ -153,6 +155,11 @@ public class Output
         toneB.playNPause();
         toneC.playNPause();
         
+    }
+    
+    public void setDifficulty(Difficulty difficulty)
+    {
+        this.difficulty = difficulty;
     }
     
 }

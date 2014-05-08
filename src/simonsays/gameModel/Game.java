@@ -129,6 +129,11 @@ public class Game
                     //Set first round to false so new output is not created again
                     firstRound = false;
                 }
+                if(output.getOutputList().size()>5)
+                {
+                    difficulty = Difficulty.HARD;
+                    output.setDifficulty(difficulty);
+                }
                 //Begins printing relevant output and playing corresponding tones
                 output.produceOutput();
 
