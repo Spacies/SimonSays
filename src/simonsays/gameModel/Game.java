@@ -16,6 +16,7 @@ import java.util.Scanner;
  *  Added calls to Highscore in Game() and hasLost()
  * @modified 08/04/13 Jaimes
  *  Added confirmation prompt when entering highscore in hasLost()
+ *  Added confirmation prompt before exit
  */
 public class Game 
 {    
@@ -44,8 +45,8 @@ public class Game
             // Create highscore table if it doesn't exist
             highscore.createHighscoreTable();
         
-       while(state!=GameState.QUIT)
-       {
+        while(state!=GameState.QUIT)
+        {
             //Create a user interface object 
             UserInterface cui = new UserInterface();
             //This loop contains code for producing a CUI menu and handling user
@@ -96,14 +97,30 @@ public class Game
                 }
                 if(menuInput == 5)
                 {
-                    //Change state to quit, terminating the program
-                    state=GameState.QUIT;
+                    
+                    // Prompt to confirm player wants to quit
+                    System.out.println("Are you sure you want to exit the game?");
+                    System.out.println("Enter 5 to confirm exit, anything else to return to main menu.");
+                    System.out.print(">");
+
+                    Scanner inputScanner = new Scanner(System.in);
+
+                    String input = inputScanner.next();
+
+                    // Check whether the player wants to quit
+                    if (!input.equals("5"))
+                        // Doesn't want to quit, return to main menu
+                        state = GameState.STARTED;
+                    else
+                        //Change state to quit, terminating the program
+                        state=GameState.QUIT;
+
                 }
-           }
-           //This loop continues producing output and receiving input until the
-           //state is explicitly changed to 'GAMEOVER'.
-           while(state==GameState.PLAYING)
-           {
+            }
+            //This loop continues producing output and receiving input until the
+            //state is explicitly changed to 'GAMEOVER'.
+            while(state==GameState.PLAYING)
+            {
                 //Create an instance of the output and input 
                 if(firstRound)
                 {
@@ -119,7 +136,7 @@ public class Game
                 }
                 //Begins printing relevant output and playing corresponding tones
                 output.produceOutput();
-                
+
                 //Creates an input option passing the current output as a parameter
                 input = new Input(output, difficulty);
                 //Calculates whether the user has matched input or not
@@ -129,16 +146,17 @@ public class Game
                 if(!inputCorrect)
                     //Changes game state to gameover when game lost
                     state=GameState.GAMEOVER;
-           }   
-           //This loop will perform any operations required upon the game being 
-           //lost
-           while(state==GameState.GAMEOVER)
-           {
-               cui.printDivider();
-               hasLost();
+            }   
+            //This loop will perform any operations required upon the game being 
+            //lost
+            while(state==GameState.GAMEOVER)
+            {
+                cui.printDivider();
+                hasLost();
 
-           }
-       }
+            }
+        }
+            
     }
     
     public void hasLost()
@@ -245,7 +263,6 @@ public class Game
                 System.out.println(handle + ", you have been immortalized on the "
                         + "highscore table with a score of " + finalScore);
             }
-  
         }
         state=GameState.STARTED;
     }
