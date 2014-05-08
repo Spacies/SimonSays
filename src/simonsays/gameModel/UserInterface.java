@@ -115,4 +115,55 @@ public class UserInterface
         }
     }
     
+    public Difficulty changeSettings(Difficulty difficulty)
+    {
+        Difficulty updateDifficulty = difficulty;
+        //Print out menu options
+        System.out.println("Please select a difficulty:");
+        System.out.println("1. Easy");
+        System.out.println("2. Normal");
+        System.out.println("3. Hard");
+        printDivider();
+        // User input prompt 
+        System.out.print(">");
+        //Declare and initialise new scanner
+        Scanner settingsScanner = new Scanner(new InputStreamReader(System.in));
+        //Declare and initalise int variable for storing menu input
+        int settingsInput = 0;
+        //Loop to run while input is not valid
+        while(settingsInput < 1 || settingsInput > 3)
+        {
+            //Check if input is integer
+            if(settingsScanner.hasNextInt())
+            {
+                //Store input as integer variable
+                settingsInput = settingsScanner.nextInt(); 
+                if(!(settingsInput>0&&settingsInput<4))
+                {
+                  System.out.println("Please enter a valid input");                  
+                }
+            }
+            else
+            {
+                //Print out statement requesting valid input
+                System.out.println("Please enter a valid input");
+                //Move scanner to next line if input is not valid
+                settingsScanner.nextLine();
+            }          
+        }
+        if(settingsInput == 1)
+        {
+            updateDifficulty = Difficulty.EASY;
+        }
+        if(settingsInput == 2)
+        {
+            updateDifficulty = Difficulty.NORMAL;
+        }
+        if(settingsInput == 3)
+        {
+            updateDifficulty = Difficulty.HARD;
+        }      
+        return updateDifficulty;
+    }
+    
 }

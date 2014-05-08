@@ -73,7 +73,7 @@ public class Game
                 {
                     //Print a divider and settings placeholder
                     cui.printDivider();
-                    System.out.println("Settings placeholder!");                 
+                    difficulty = cui.changeSettings(difficulty);
                 }
                 if(menuInput == 4)
                 {
