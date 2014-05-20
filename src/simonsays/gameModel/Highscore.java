@@ -14,12 +14,15 @@ import java.util.logging.Logger;
  * @modified 07/06/14 Jaimes
  *  New score now inserts correctly into Highscore
  *  Prettied up the highscore print out
+ * @modified 20/05/14
+ *  Changed database connection to use embedded driver.
  */
 public class Highscore
 {
     
     Connection conn = null;
-    String url = "jdbc:derby://localhost:1527/SimonSaysDB";  //url of the DB host
+    //String url = "jdbc:derby://localhost:1527/SimonSaysDB";  //url of the DB host
+    String url = "jdbc:derby:SimonSaysDB;create=true";  //url of the DB host
     String username = "simonsays";  //your DB username
     String password = "simonsays";   //your DB password
 
